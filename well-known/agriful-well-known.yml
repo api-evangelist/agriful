@@ -1,0 +1,176 @@
+generated: '2026-09-12'
+method: probed
+source: live HTTP probes of every host this record knows
+name: Agriful /.well-known/ discovery probe
+description: >-
+  Results of probing the /.well-known/ discovery surface for every host Agriful is
+  known to operate: the registrable domain and its www host (the Webflow marketing
+  site), the application host app.agrifulsoftware.com (a RedwoodJS single-page app),
+  and the API host api.agrifulsoftware.com (the Redwood api side, served from Render
+  behind Cloudflare). Nothing was found. Every path on agrifulsoftware.com,
+  www.agrifulsoftware.com and api.agrifulsoftware.com returns 404.
+  app.agrifulsoftware.com answers 200 with the same 1,205-byte text/html SPA shell
+  for EVERY /.well-known/ path — it is a client-side catch-all route, not a served
+  document — so those 200s are recorded as present-but-not-a-real-document and
+  nothing was saved. No WellKnown, SecurityTxt or AgentCard pointer is emitted from
+  this probe, because no path returned a real document on any host.
+hosts:
+- host: https://agrifulsoftware.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  note: Redirects to https://www.agrifulsoftware.com; statuses observed after the redirect.
+- host: https://www.agrifulsoftware.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  note: >-
+    Webflow-hosted marketing site. /robots.txt (200) carries only a sitemap line;
+    /llms.txt returns 404.
+- host: https://app.agrifulsoftware.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 200
+    type: text/html
+    real_document: false
+    note: SPA shell, not a document.
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    type: text/html
+    real_document: false
+    note: SPA shell, not a document.
+  - path: /.well-known/oauth-protected-resource
+    status: 200
+    type: text/html
+    real_document: false
+    note: SPA shell, not a document.
+  - path: /.well-known/api-catalog
+    status: 200
+    type: text/html
+    real_document: false
+    note: SPA shell, not a document.
+  - path: /.well-known/ai-plugin.json
+    status: 200
+    type: text/html
+    real_document: false
+    note: SPA shell, not a document.
+  - path: /.well-known/agent-card.json
+    status: 200
+    type: text/html
+    real_document: false
+    note: >-
+      SPA shell, not an AgentCard. The body is the RedwoodJS index.html
+      (<div id="redwood-app">), fails every AgentCard shape check, and is served
+      identically for any path under /.well-known/. No AgentCard pointer emitted.
+  - path: /.well-known/agent.json
+    status: 200
+    type: text/html
+    real_document: false
+    note: SPA shell, not an AgentCard.
+  note: >-
+    RedwoodJS single-page application. The 200s above are the framework's catch-all
+    route returning index.html; /.well-known/security.txt is the one path that 404s
+    because it is not matched by the SPA's asset handling.
+- host: https://api.agrifulsoftware.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  note: >-
+    RedwoodJS api side on Render. Every unmatched path answers 404 text/plain with
+    'Function "<name>" was not found.'; /healthz returns 200 with an empty body and
+    /graphql returns 200. No discovery document is served.
+contract_discovery:
+  description: >-
+    STEP 0b contract discovery, run 2026-09-12 against every known host. One live
+    machine surface exists and it is not a developer API.
+  probes:
+  - url: https://api.agrifulsoftware.com/graphql
+    method: POST
+    status: 200
+    result: >-
+      Live GraphQL endpoint. An anonymous POST of {__typename} returns
+      {"data":{"__typename":"Query"}}, so the endpoint executes unauthenticated
+      requests. Introspection is DISABLED — {__schema{queryType{name}}} returns
+      'GraphQL introspection has been disabled, but the requested query contained the
+      field "__schema"'. No SDL was saved and none was reconstructed: the schema is
+      the provider's to publish. Note for the provider: did-you-mean suggestions are
+      left enabled on the same endpoint, which discloses field names in error
+      messages even with introspection off.
+  - url: https://api.agrifulsoftware.com/openapi.json
+    status: 404
+  - url: https://api.agrifulsoftware.com/swagger.json
+    status: 404
+  - url: https://api.agrifulsoftware.com/api-docs
+    status: 404
+  - url: https://api.agrifulsoftware.com/docs
+    status: 404
+  - url: https://api.agrifulsoftware.com/redoc
+    status: 404
+  - url: https://api.agrifulsoftware.com/v1/openapi.json
+    status: 404
+  - url: https://app.agrifulsoftware.com/openapi.json
+    status: 200
+    result: SPA shell (text/html), not an OpenAPI document.
+  - url: https://www.agrifulsoftware.com/openapi.json
+    status: 404
+  - url: https://docs.agrifulsoftware.com/
+    status: 0
+    result: DNS does not resolve — no docs host exists.
+  - url: https://developers.agrifulsoftware.com/
+    status: 0
+    result: DNS does not resolve — no developer host exists.
+  - url: https://api.github.com/orgs/Agriful-Software/repos
+    status: 200
+    result: >-
+      The Agriful-Software GitHub organization exists (created 2022-10-28) and has
+      zero public repositories, so no .proto, WSDL, AsyncAPI or SDK source is
+      published there.
+  wsdl: not found — no ?wsdl or ?singleWsdl surface on any host, and no SOAP/enterprise integration section exists.
+  grpc: not found — no .proto published on GitHub, buf.build or the site.
+  asyncapi: not found — no event, streaming or webhook surface is documented.
+  ogc: not applicable — no WMS/WFS/WCS/WMTS/CSW or OGC API evidence anywhere in the record.
+  mcp: not found — no hosted MCP endpoint, no stdio package, no mention of MCP on any Agriful surface.

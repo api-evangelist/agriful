@@ -1,0 +1,36 @@
+generated: '2026-09-12'
+method: probed
+source: https://api.agrifulsoftware.com/graphql
+name: Agriful rate limits
+description: >-
+  Agriful publishes no rate limits, because it publishes no public API and no
+  documentation of any kind. limit_count is an honest zero. The only live machine
+  surface on an Agriful host — the RedwoodJS GraphQL endpoint at
+  https://api.agrifulsoftware.com/graphql that backs the app.agrifulsoftware.com
+  single-page application — was probed anonymously and returned NO rate-limit headers
+  of any kind: no RateLimit-*, no X-RateLimit-*, no Retry-After and no vendor-specific
+  counters. Its response headers carry only Cloudflare edge fields (cf-ray,
+  cf-cache-status, nel, report-to) and Render origin fields (rndr-id,
+  x-render-origin-server). That endpoint is not a developer surface and is recorded
+  here as an observation only, never as a published policy.
+limit_count: 0
+documented: false
+docs: null
+limits: []
+observed_headers: []
+standard_headers:
+  ratelimit_draft: false
+  x_ratelimit: false
+  retry_after: not observed
+exhaustion_status: not observed
+throttling_evidence: none observed on any anonymous request
+x-evidence:
+  fetched: '2026-09-12'
+  url: https://api.agrifulsoftware.com/graphql
+  http_status: 200
+  content_type: application/json; charset=utf-8
+  note: >-
+    Observed on an anonymous POST of {__typename}, which returned
+    {"data":{"__typename":"Query"},"extensions":{}}. A second POST carrying an
+    introspection query returned 200 with an introspection-disabled error and the same
+    header set. No rate-limit signal was present on either response.

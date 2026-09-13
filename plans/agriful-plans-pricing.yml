@@ -1,0 +1,49 @@
+generated: '2026-09-12'
+method: searched
+source: https://www.agrifulsoftware.com/
+name: Agriful plans and pricing
+description: >-
+  Agriful publishes no pricing. The marketing site has no pricing page and no pricing
+  section: every conversion path on agrifulsoftware.com is a "Get a demo" or "Let's
+  chat" contact form, and /pricing returns the site's 404 page. The sitemap does list
+  /templates/pricing/pricing-1 through pricing-5, but those are unmodified Webflow
+  template pages left in the project, not Agriful's own plans, and are not linked
+  from any navigation. Pricing is therefore quoted per customer through an Order Form,
+  which the Terms of Service confirms: the agreement takes effect "as of the Order Form
+  Effective Date" and fees, term and scope are all defined in that Order Form rather
+  than on the website. plan_count is an honest zero — a sales-quoted enterprise motion,
+  not an omission by this pipeline.
+plan_count: 0
+pricing_published: false
+pricing_model: contact-sales (per-customer Order Form)
+currency: null
+free_tier: false
+free_trial: not published
+metering: none published
+api_access_included: null
+api_pricing: >-
+  Not applicable. Agriful sells no API product and meters no API usage; there is no
+  developer plan, API add-on or usage quota anywhere on its public surface.
+plans: []
+sources:
+- url: https://www.agrifulsoftware.com/
+  status: 200
+  note: Primary calls to action are "Get a demo" and "Let's chat"; no price appears anywhere on the page.
+- url: https://www.agrifulsoftware.com/pricing
+  status: 404
+  note: Returns the site 404 ("Page not found!"). No pricing page exists.
+- url: https://www.agrifulsoftware.com/sitemap.xml
+  status: 200
+  note: >-
+    Lists /templates/pricing/pricing-1..5 — stock Webflow template pages retained in the
+    project, unlinked from navigation and not Agriful's plans.
+- url: https://www.agrifulsoftware.com/about/terms-of-service
+  status: 200
+  note: >-
+    Fees, subscription term and scope are set in a per-customer Order Form; the ToS
+    defines the Agreement as the Terms plus the Order Form(s).
+x-evidence:
+  fetched: '2026-09-12'
+  url: https://www.agrifulsoftware.com/pricing
+  http_status: 404
+  content_type: text/html

@@ -1,17 +1,32 @@
 aid: agriful
 name: Agriful
-description: 'Agriful is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: Agriful (Agriful Software Inc.) is a cloud ERP for the fresh produce industry, founded in
+  2022 by Patrick Crowley (CEO) and Deep Randhawa (CTO) and backed by Fractal Software and Reservoir Ventures.
+  Its web platform runs sales and purchase order entry, live inventory control, lot-level traceability
+  for FSMA and PTI compliance, produce-specific AR/AP accounting and grower settlements, and customizable
+  reporting for produce brokers, marketers, packer-shippers, wholesalers and distributors. As of this
+  profile Agriful publishes no developer program, API reference, OpenAPI or GraphQL schema, SDK, CLI,
+  Postman collection or webhook catalog. The single live machine surface on its domain is the RedwoodJS
+  GraphQL endpoint at api.agrifulsoftware.com/graphql that backs its own single-page application; it
+  answers anonymous requests but has introspection disabled in production and is documented nowhere.
 url: https://raw.githubusercontent.com/api-evangelist/agriful/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
 specificationVersion: '0.20'
 created: '2026-09-12'
 modified: '2026-09-12'
 tags:
+- Agriculture
+- Fresh Produce
+- Food Supply Chain
+- Traceability
+- ERP
+- Inventory Management
+- Order Management
+- Accounting
+- SaaS
 - Company
+image: https://cdn.prod.website-files.com/6349c3dd59bbe2626264d298/6410a0ce0f67d016f4ee9010_Agriful%20-%20webclip.png
 apis: []
 maintainers:
 - FN: Kin Lane
@@ -20,4 +35,59 @@ maintainers:
   email: info@apis.io
 common:
 - type: Website
-  url: https://www.nasdaqprivatemarket.com/
+  url: https://www.agrifulsoftware.com/
+- type: Login
+  url: https://app.agrifulsoftware.com/
+- type: Support
+  url: https://www.agrifulsoftware.com/about/contacts-agriful-software
+- type: TermsOfService
+  url: https://www.agrifulsoftware.com/about/terms-of-service
+- type: PrivacyPolicy
+  url: https://www.agrifulsoftware.com/about/privacy-policy
+- type: GitHubOrganization
+  url: https://github.com/Agriful-Software
+- type: LinkedIn
+  url: https://www.linkedin.com/company/agriful-software
+- type: LLMsTxt
+  url: llms/agriful-llms.txt
+- type: Plans
+  url: plans/agriful-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/agriful-rate-limits.yml
+- type: Packages
+  url: packages/agriful-packages.yml
+- type: DomainSecurity
+  url: security/agriful-domain-security.yml
+x-tier: profiled
+x-tier-reason: 'enrichment pass 2026-09-12: full contract discovery run, no public API surface found'
+x-enrichment:
+  date: '2026-09-12'
+  status: minimal
+  artifacts_added: 6
+  pass: local-v3
+x-coverage:
+  state: none
+  reason: no-developer-program
+  detail: >-
+    Agriful sells an end-user produce ERP with no developer program at all: there is no
+    /developers or /docs path, docs.agrifulsoftware.com and developers.agrifulsoftware.com
+    do not resolve, its GitHub organization has zero public repositories, and the only live
+    machine surface is the RedwoodJS GraphQL endpoint at api.agrifulsoftware.com/graphql
+    that backs its own single-page app — which answers anonymously but has introspection
+    disabled in production and is documented nowhere.
+  evidence:
+  - url: https://api.agrifulsoftware.com/graphql
+    status: 200
+  - url: https://api.agrifulsoftware.com/openapi.json
+    status: 404
+  - url: https://www.agrifulsoftware.com/openapi.json
+    status: 404
+  - url: https://www.agrifulsoftware.com/developers
+    status: 404
+  - url: https://www.agrifulsoftware.com/pricing
+    status: 404
+  - url: https://www.agrifulsoftware.com/.well-known/api-catalog
+    status: 404
+  - url: https://api.github.com/orgs/Agriful-Software/repos
+    status: 200
+  checked: '2026-09-12'

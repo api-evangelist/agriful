@@ -1,0 +1,57 @@
+generated: '2026-09-12'
+method: searched
+source: >-
+  registry.npmjs.org search + package lookup, pypi.org, rubygems.org, packagist.org,
+  crates.io, api.nuget.org, proxy.golang.org, api.github.com/orgs/Agriful-Software
+name: Agriful client libraries and packages
+description: >-
+  Agriful publishes no first-party client library in any package registry, and no
+  third-party library carrying the Agriful name exists either. Its GitHub
+  organization (github.com/Agriful-Software, created 2022-10-28) has zero public
+  repositories. This is consistent with the rest of the record: there is no public
+  API for an SDK to wrap. official_count and package_count are both honest zeros,
+  and no SDKs pointer is emitted.
+official_count: 0
+package_count: 0
+packages: []
+registries_probed:
+- registry: npm
+  query: agriful
+  url: https://registry.npmjs.org/-/v1/search?text=agriful
+  status: 200
+  result: 0 results. Direct lookup of registry.npmjs.org/agriful returns 404; no @agriful scope exists.
+- registry: pypi
+  query: agriful
+  url: https://pypi.org/pypi/agriful/json
+  status: 404
+  result: No package named agriful.
+- registry: rubygems
+  query: agriful
+  url: https://rubygems.org/api/v1/search.json?query=agriful
+  status: 200
+  result: No exact match; results are unrelated fuzzy hits (agris, agrimap).
+- registry: packagist
+  query: agriful
+  url: https://packagist.org/search.json?q=agriful
+  status: 200
+  result: No exact match; results are unrelated agriculture-adjacent PHP packages.
+- registry: crates.io
+  query: agriful
+  url: https://crates.io/api/v1/crates?q=agriful
+  status: 200
+  result: No exact match; results are unrelated agriculture-adjacent crates.
+- registry: nuget
+  query: agriful
+  url: https://azuresearch-usnc.nuget.org/query?q=agriful
+  status: 200
+  result: totalHits 0.
+- registry: go
+  query: github.com/agriful-software
+  url: https://proxy.golang.org/github.com/agriful-software/@v/list
+  status: 404
+  result: No Go module published under the organization path.
+- registry: github
+  query: Agriful-Software
+  url: https://api.github.com/orgs/Agriful-Software/repos
+  status: 200
+  result: Organization exists, zero public repositories, five followers, no published source of any kind.
